@@ -21,6 +21,14 @@
     <micronaut.aot.packageName>jwt.aot.generated</micronaut.aot.packageName>
     <micronaut.runtime>netty</micronaut.runtime>
     <exec.mainClass>jwt.Application</exec.mainClass>
+
+    <micronaut.openapi.generate.server>true</micronaut.openapi.generate.server>
+    <micronaut.openapi.definition>src/main/resources/swagger.yaml</micronaut.openapi.definition>
+    <micronaut.openapi.api.package.name>jwt.controller</micronaut.openapi.api.package.name>
+    <micronaut.openapi.model.package.name>jwt.model</micronaut.openapi.model.package.name>
+    <micronaut.openapi.invoker.package.name>jwt</micronaut.openapi.invoker.package.name>
+    <micronaut.openapi.use.reactive>false</micronaut.openapi.use.reactive>
+    <micronaut.openapi.server.use.auth>true</micronaut.openapi.server.use.auth>
   </properties>
 
   <repositories>
@@ -77,6 +85,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -101,9 +110,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <!-- Uncomment to enable incremental compilation -->
-          <!-- <useIncrementalCompilation>false</useIncrementalCompilation> -->
-
           <annotationProcessorPaths combine.children="append">
             <path>
               <groupId>io.micronaut</groupId>
