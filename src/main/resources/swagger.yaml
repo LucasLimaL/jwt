@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  description: This is a jwt API
+  version: 1.0.0
+  title: JWT
+tags:
+  - name: Validations
+    description: Validates JWT
+
+paths:
+  /validations:
+    get:
+      tags:
+        - Validations
+      summary: Check if jwt is valid.
+      operationId: validate
+      parameters:
+        - $ref: "#/components/parameters/JwtHeader"
+      responses:
+        "200":
+          description: Success
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/JwtValidationResponse"
+
+components:
+  parameters:
+    JwtHeader:
+      in: header
+      name: jwt
+      required: true
+      schema:
+        type: string
+
+  schemas:
+    JwtValidationResponse:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+      required: ["isValid"]
