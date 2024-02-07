@@ -2,8 +2,6 @@ FROM maven:3.8.4-openjdk-17 as build
 
 COPY src /app/src
 COPY pom.xml /app
-COPY deployment.yml /app
-COPY service.yml /app
 
 WORKDIR /app
 
