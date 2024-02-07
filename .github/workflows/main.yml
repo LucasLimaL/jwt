@@ -50,5 +50,5 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           sed -i 's#<IMAGE_TAG>#'"$IMAGE_TAG"'#g' .github/workflows/deployment.yml
-          kubectl apply -f .github/workflows/deployment.yml
-          kubectl apply -f .github/workflows/service.yml
+          kubectl apply -f .kube/deployment.yml
+          kubectl apply -f .kube/service.yml
