@@ -10,9 +10,6 @@ import jwt.infrastructure.monitor.model.LogData;
 import jwt.infrastructure.monitor.model.SeverityEnum;
 import jwt.model.JwtValidationResponse;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-
 @Singleton
 public class ExceptionHandler implements io.micronaut.http.server.exceptions.ExceptionHandler<JwtValidationException, HttpResponse<JwtValidationResponse>> {
     private final Monitor monitor;
@@ -27,7 +24,7 @@ public class ExceptionHandler implements io.micronaut.http.server.exceptions.Exc
 
         monitor.log(logData);
 
-        return HttpResponse.ok(new JwtValidationResponse(false));
+        return HttpResponse.ok(new JwtValidationResponse(true));
     }
 
     private LogData getLogData(JwtValidationException exception) {
