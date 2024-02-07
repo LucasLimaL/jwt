@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: jwt
-        image: 851725430072.dkr.ecr.sa-east-1.amazonaws.com/jwt-master:latest
+        image: 851725430072.dkr.ecr.sa-east-1.amazonaws.com/jwt-master:<IMAGE_TAG>
         ports:
         - containerPort: 80

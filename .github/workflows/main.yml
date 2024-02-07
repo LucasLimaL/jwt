@@ -30,7 +30,7 @@ jobs:
         env:
           ECR_REGISTRY: 851725430072.dkr.ecr.sa-east-1.amazonaws.com
           ECR_REPOSITORY: jwt-master
-          IMAGE_TAG: latest
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -46,6 +46,9 @@ jobs:
           aws eks --region sa-east-1 update-kubeconfig --name auth-k8s
 
       - name: Deploy to EKS
+        env:
+          IMAGE_TAG: ${{ github.sha }}
         run: |
+          sed -i 's#<IMAGE_TAG>#'"$IMAGE_TAG"'#g' .github/workflows/deployment.yml
           kubectl apply -f .github/workflows/deployment.yml
           kubectl apply -f .github/workflows/service.yml
