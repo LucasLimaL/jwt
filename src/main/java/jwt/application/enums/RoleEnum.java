@@ -5,7 +5,7 @@ public enum RoleEnum {
     MEMBER("Member"),
     EXTERNAL("External");
 
-    private static final boolean IS_CLAIM_ROLE_CASE_SENSITIVE = false;
+    private static final boolean IS_CLAIM_ROLE_CASE_SENSITIVE = true;
 
     private final String caseSensitiveName;
 
