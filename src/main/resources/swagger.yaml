@@ -39,4 +39,4 @@ components:
       properties:
         isValid:
           type: boolean
-      required: ["isValid"]
+      required: [ "isValid" ]
