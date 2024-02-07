@@ -15,4 +15,12 @@ public class TestConstants {
             "iOiJUb25pbmhvIEFyYXVqbyJ9.QY05sIjtrcJnP533kQNk8QXcaleJ1Q01jWY_ZzIZuAg";
 
     public static final String INVALID_JWT = "invalidJWT";
+
+    public static final String INVALID_CLAIM = "invalidClaim";
+
+    public static final String ROLE = "Role";
+
+    public static final String SEED = "Seed";
+
+    public static final String NAME = "Name";
 }
