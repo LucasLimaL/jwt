@@ -49,6 +49,6 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          sed -i 's#<IMAGE_TAG>#'"$IMAGE_TAG"'#g' .github/workflows/deployment.yml
+          sed -i 's#<IMAGE_TAG>#'"$IMAGE_TAG"'#g' .kube/deployment.yml
           kubectl apply -f .kube/deployment.yml
           kubectl apply -f .kube/service.yml
