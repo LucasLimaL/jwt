@@ -2,7 +2,7 @@ package jwt.application.service;
 
 import java.math.BigInteger;
 
-public class Utils {
+public final class Utils {
     public static boolean textContainsAnyNumber(String text) {
         return text.matches(".*\\d.*");
     }
