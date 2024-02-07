@@ -24,7 +24,7 @@ public class ExceptionHandler implements io.micronaut.http.server.exceptions.Exc
 
         monitor.log(logData);
 
-        return HttpResponse.ok(new JwtValidationResponse(true));
+        return HttpResponse.ok(new JwtValidationResponse(false));
     }
 
     private LogData getLogData(JwtValidationException exception) {
