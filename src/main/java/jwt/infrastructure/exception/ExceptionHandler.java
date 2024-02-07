@@ -11,6 +11,7 @@ import jwt.infrastructure.monitor.model.SeverityEnum;
 import jwt.model.JwtValidationResponse;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Singleton
 public class ExceptionHandler implements io.micronaut.http.server.exceptions.ExceptionHandler<JwtValidationException, HttpResponse<JwtValidationResponse>> {
@@ -30,8 +31,11 @@ public class ExceptionHandler implements io.micronaut.http.server.exceptions.Exc
     }
 
     private LogData getLogData(JwtValidationException exception) {
-        //TODO: formatar datetime
-        final var event = new Event(exception.getMessage(), SeverityEnum.INFO, LocalDateTime.now().toString(), exception.getClaims());
+        final var event = new Event(exception.getMessage(),
+                SeverityEnum.INFO,
+                LocalDateTime.now().atOffset(ZoneOffset.ofHours(-3)).toString(),
+                exception.getClaims().toString()
+        );
 
         return new LogData(event);
     }
