@@ -1,43 +1,47 @@
-## Micronaut 4.2.4 Documentation
+## Sobre
+A aplicação "jwt" é uma solução Micronaut para manipulação e validação de tokens JWT.
 
-- [User Guide](https://docs.micronaut.io/4.2.4/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.2.4/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.2.4/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
-
-- [Micronaut Maven Plugin documentation](https://micronaut-projects.github.io/micronaut-maven-plugin/latest/)
-## Feature serialization-jackson documentation
-
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
+### Requisitos para Execução
+- JDK 17
+- Maven
 
 
-## Feature micronaut-aot documentation
+### VM Options:
 
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
+``-Dmicronaut.environments=local``
+### Para executar os testes de mutação utilzando PiTest e gerar relatórios de mutação, utilize o comando:
+
+``
+./mvnw org.pitest:pitest-maven:mutationCoverage
+``
+
+### Deploy Automatizado
+O deploy é automatizado através do GitHub Actions, onde cada commit na branch master desencadeia um novo deploy no AWS EKS.
+
+### Logs
+Todos os erros são registrados automaticamente no Splunk, permitindo um monitoramento eficiente e uma rápida resposta a incidentes.
+
+### Open API e Swagger
+A aplicação oferece uma documentação a partir de openapi 3.0, acessível em /src/main/resources/swagger.yaml
+
+### Configurações Personalizadas
+``
+JwtValidadorService.java
+``
+- Permite configurar as validações JWT. São elas:
+    - O número máximo de caracteres para a claim "Name"
+    - Claims obrigatórias.
+
+``
+RoleEnum.java
+``
+- Configura se a claim "Role" do JWT é case sensitive.
+
+### Problemas de autoscaling
+Quando implantada, a aplicação é containerizada usando Docker e executada no AWS EKS em uma instância t3.micro (FREE), por conta disso, 
+ela possui limite de 2 IP's limitações de IPs privados e é por isso que a configuração de réplicas no Kubernetes é 1, pois quando há 2 pods 
+rodando e tenta-se fazer um deploy, não há nenhum IP disponível para a nova instância  
 
 
-## Feature openapi documentation
-
-- [Micronaut OpenAPI Support documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
-
-- [https://www.openapis.org](https://www.openapis.org)
-
-
-## Feature swagger-ui documentation
-
-- [Micronaut Swagger UI documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
-
-- [https://swagger.io/tools/swagger-ui/](https://swagger.io/tools/swagger-ui/)
-
-
-## Feature security-jwt documentation
-
-- [Micronaut Security JWT documentation](https://micronaut-projects.github.io/micronaut-security/latest/guide/index.html)
-
-
-## Feature maven-enforcer-plugin documentation
-
-- [https://maven.apache.org/enforcer/maven-enforcer-plugin/](https://maven.apache.org/enforcer/maven-enforcer-plugin/)
-
-
+### Ferramentas utilizadas
+https://trello.com/b/fFY6WmJM/projeto-jwt-validator-itau
