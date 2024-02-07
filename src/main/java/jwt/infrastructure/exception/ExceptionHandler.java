@@ -33,7 +33,6 @@ public class ExceptionHandler implements io.micronaut.http.server.exceptions.Exc
     private LogData getLogData(JwtValidationException exception) {
         final var event = new Event(exception.getMessage(),
                 SeverityEnum.INFO,
-                LocalDateTime.now().atOffset(ZoneOffset.ofHours(-3)).toString(),
                 "teste"
         );
 
