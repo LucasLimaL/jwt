@@ -30,7 +30,7 @@ public class ExceptionHandler implements io.micronaut.http.server.exceptions.Exc
     private LogData getLogData(JwtValidationException exception) {
         final var event = new Event(exception.getMessage(),
                 SeverityEnum.INFO,
-                "teste"
+                exception.getClaims().toString()
         );
 
         return new LogData(event);
