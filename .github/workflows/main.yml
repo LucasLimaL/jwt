@@ -28,7 +28,7 @@ jobs:
 
       - name: Build, tag, and push image to Amazon ECR
         env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REGISTRY: 851725430072.dkr.ecr.sa-east-1.amazonaws.com/jwt-master
           ECR_REPOSITORY: jwt-master
           IMAGE_TAG: latest
         run: |
