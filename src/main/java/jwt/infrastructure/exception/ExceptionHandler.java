@@ -10,6 +10,8 @@ import jwt.infrastructure.monitor.model.LogData;
 import jwt.infrastructure.monitor.model.SeverityEnum;
 import jwt.model.JwtValidationResponse;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 
 @Singleton
@@ -24,7 +26,13 @@ public class ExceptionHandler implements io.micronaut.http.server.exceptions.Exc
     public HttpResponse<JwtValidationResponse> handle(HttpRequest request, JwtValidationException exception) {
         final var logData = getLogData(exception);
 
-        monitor.Log(logData);
+        try {
+            monitor.log(logData);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
 
         return HttpResponse.ok(new JwtValidationResponse(false));
     }
