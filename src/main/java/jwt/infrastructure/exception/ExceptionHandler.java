@@ -34,7 +34,7 @@ public class ExceptionHandler implements io.micronaut.http.server.exceptions.Exc
         final var event = new Event(exception.getMessage(),
                 SeverityEnum.INFO,
                 LocalDateTime.now().atOffset(ZoneOffset.ofHours(-3)).toString(),
-                exception.getClaims().toString()
+                "teste"
         );
 
         return new LogData(event);
